@@ -8,11 +8,10 @@ export default class IndexRoute extends AbstractRoute
 		this.registerHandler("/", this.handler);
 	}
 
-	private handler(mrequest : express.Request, response : express.Response, next : express.NextFunction) : void
+	private handler(request : express.Request, response : express.Response, next : express.NextFunction) : void
 	{
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("content-type", "text/plain");
-		response.setHeader("Cache-Control", "no-store");
-		response.send("Hello world!");
+		console.log("[HTTP request] " + request.baseUrl);
+		response.statusCode = 200;
+		response.send("");
 	}
 }
