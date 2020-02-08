@@ -5,6 +5,7 @@
 	"author": "etienne-k",
 	"license": "GPL-3.0",
 	"scripts": {
+        "build": "echo -n",
 		"start": "ts-node -T src/main.ts"
 	},
 	"dependencies": {
