@@ -16,7 +16,7 @@ export default abstract class AbstractRoute
 	protected registerHandler(endpoint : string,
 		handler : (request : express.Request, response : express.Response, next : express.NextFunction) => void) : void
 	{
-		this.router.get(endpoint,
+		this.router.all(endpoint,
 			(request : express.Request, response : express.Response, next : express.NextFunction) =>
 				handler(request, response, next));
 	}
