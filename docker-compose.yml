@@ -3,7 +3,8 @@ version: "3.2"
 services:
 
   git-deploy:
-    image: mrnehu/base-typescript:prod-latest
+    build:
+      context: .
     container_name: git-deploy
     volumes:
       - type: bind
