@@ -6,10 +6,6 @@ services:
     build:
       context: .
     container_name: git-deploy
-    volumes:
-      - type: bind
-        source: .
-        target: /opt/app
     ports:
       - "4040:3000"
     restart: "always"
