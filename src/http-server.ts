@@ -2,6 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as http from "http";
 import * as express from "express";
+import * as bodyParser from "body-parser";
 
 import IndexRoute from "./index-route";
 
@@ -34,12 +35,14 @@ export default class HTTPServer
 			this.express.set("view engine", "hbs");
 
 			console.log("Setting up routes");
+			this.express.use(bodyParser.json());
 			this.express.use("/", new IndexRoute().getRouter());
 			this.express.use(this.fallbackHandler);
 		}
 		else
 		{
 			console.log("Setting up routes");
+			this.express.use(bodyParser.json());
 			this.express.use("/", new IndexRoute().getRouter());
 			this.express.use(this.fallbackHandler);
 		}
