@@ -12,7 +12,6 @@ export default class IndexRoute extends AbstractRoute
 	{
 		if (request.body)
 		{
-			request.
 			console.log("[HTTP request] " + request.baseUrl);
 
 			if (request.body.hook.config.secret)
