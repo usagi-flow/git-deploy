@@ -6,7 +6,9 @@
 	"license": "GPL-3.0",
 	"scripts": {
 		"build": "echo -n",
-		"start": "ts-node -T src/main.ts"
+		"start": "yarn start-prepare && yarn start-application",
+		"start-prepare": "echo -e \"Public SSH key:\\n\\n$(cat ~/.ssh/id_rsa.pub)\\n\"",
+		"start-application": "ts-node -T src/main.ts"
 	},
 	"dependencies": {
 		"body-parser": "^1.19.0",
