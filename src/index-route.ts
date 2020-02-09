@@ -1,5 +1,6 @@
 import * as express from "express";
 import AbstractRoute from "./abstract-route";
+import Deployer from "./deployer";
 
 export default class IndexRoute extends AbstractRoute
 {
@@ -14,11 +15,18 @@ export default class IndexRoute extends AbstractRoute
 		{
 			console.log("[HTTP request] " + request.baseUrl);
 
-			if (request.body.hook.config.secret)
-				console.log("  -> Secret: " + request.body.hook.config.secret);
-
-			response.statusCode = 200;
-			response.send("");
+			try
+			{
+				Deployer.deploy();
+				response.statusCode = 200;
+				response.send("");
+			}
+			catch (e)
+			{
+				console.error("An error occurred: " + e);
+				response.statusCode = 500;
+				response.send("");
+			}
 		}
 		else
 		{

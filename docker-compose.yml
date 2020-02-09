@@ -6,6 +6,14 @@ services:
     build:
       context: .
     container_name: git-deploy
+    environment:
+      destination: "/srv/services/webserver"
+      remote: "origin"
+      branch: "stable"
+    volumes:
+      - type: bind
+        source: "/srv/services/webserver"
+        target: "/srv/services/webserver"
     ports:
       - "4040:3000"
     restart: "always"
