@@ -19,7 +19,8 @@ export default class HTTPServer
 	private constructor(root : string, port : number)
 	{
 		console.log("Initializing server");
-		this.express = express();
+		// Explicit .default() call required when esModuleInterop == true
+		this.express = express.default();
 		this.httpServer = http.createServer(this.express);
 		this.root = root;
 		this.port = port;
