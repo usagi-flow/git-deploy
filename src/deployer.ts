@@ -12,6 +12,8 @@ export default class Deployer
 		if (!process.env.branch)
 			throw new Error("The \"branch\" environment variable must be set to point to a valid branch (e.g. \"stable\")");
 
-		return simplegit(process.env.destination).pull(process.env.remote, process.env.branch);
+		return simplegit(process.env.destination)
+			.checkout(process.env.branch)
+			.pull(process.env.remote, process.env.branch);
 	}
 }
