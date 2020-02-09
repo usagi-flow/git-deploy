@@ -10,8 +10,21 @@ export default class IndexRoute extends AbstractRoute
 
 	private handler(request : express.Request, response : express.Response, next : express.NextFunction) : void
 	{
-		console.log("[HTTP request] " + request.baseUrl);
-		response.statusCode = 200;
-		response.send("");
+		if (request.body)
+		{
+			console.log("[HTTP request] " + request.baseUrl);
+
+			if (request.body.hook.config.secret)
+				console.log("  -> Secret: " + request.body.hook.config.secret);
+
+			response.statusCode = 200;
+			response.send("");
+		}
+		else
+		{
+			console.error("[HTTP 500] Empty request body");
+			response.statusCode = 400;
+			response.send("");
+		}
 	}
 }
