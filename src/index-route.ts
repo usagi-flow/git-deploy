@@ -13,11 +13,12 @@ export default class IndexRoute extends AbstractRoute
 	{
 		if (request.body)
 		{
-			console.log("[HTTP request] " + request.baseUrl);
+			console.log("[HTTP request] " + request.url);
 
 			try
 			{
 				Deployer.deploy();
+				console.log("Deployment succeeded");
 				response.statusCode = 200;
 				response.send("");
 			}
