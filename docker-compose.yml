@@ -10,6 +10,7 @@ services:
       destination: "/srv/services/webserver"
       remote: "origin"
       branch: "stable"
+      build_command: "docker-compose up --build -d"
     volumes:
       - type: bind
         source: "/srv/services/webserver"
