@@ -1,23 +1,30 @@
 import simplegit from "simple-git";
 import {Git} from "simple-git/src/index";
-import { execSync } from "child_process";
+import { execSync, ExecSyncOptionsWithStringEncoding } from "child_process";
 
 export default class Deployer
 {
 	public static deploy() : void
 	{
+		let execOptions : ExecSyncOptionsWithStringEncoding = {
+			encoding: "utf8",
+			stdio: "inherit"
+		};
+
 		Deployer.updateRepository();
 
 		if (process.env.build_command)
 		{
 			console.log("Performing build step");
-			console.log(execSync(process.env.build_command).toString());
+			execSync(process.env.build_command, execOptions);
 			console.log("Build step finished");
 		}
 	}
 
 	private static updateRepository() : Git
 	{
+		console.log("Updating local repository");
+
 		if (!process.env.destination)
 			throw new Error("The \"destination\" environment variable must be set to point to the local repository");
 		if (!process.env.remote)
